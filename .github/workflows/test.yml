@@ -41,7 +41,7 @@ jobs:
       - name: run
         run: |
           apt install -y python3-dev
-          pip3 install riscof
+          pip3 install -U riscof
           git clone https://gitlab.com/incoresemi/riscof-plugins.git 
           riscof --config ./.github/config/rv32.ini run --suite ./riscv-test-suite --env ./riscv-test-suite/env --work-dir ./rv32_work
           riscof --config ./.github/config/rv64.ini run --suite ./riscv-test-suite --env ./riscv-test-suite/env --work-dir ./rv64-work
