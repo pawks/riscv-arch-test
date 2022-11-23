@@ -33,3 +33,14 @@ jobs:
           else
               echo "Changelog updated."
           fi
+  test-run:
+    runs-on: ubuntu-latest
+    container: registry.gitlab.com/incoresemi/docker-images/compliance:latest 
+    steps:
+      - uses: actions/checkout@v2
+      - name: run
+        run: |
+          pip3 install riscof
+          git clone https://gitlab.com/incoresemi/riscof-plugins.git 
+          riscof --config ./.github/config/rv32.ini run --suite ./riscv-test-suite --env ./riscv-test-suite/env --work-dir ./rv32_work
+          riscof --config ./.github/config/rv64.ini run --suite ./riscv-test-suite --env ./riscv-test-suite/env --work-dir ./rv64-work
